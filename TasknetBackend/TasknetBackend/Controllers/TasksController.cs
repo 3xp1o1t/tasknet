@@ -9,7 +9,7 @@ using TasknetBackend.Models;
 namespace TasknetBackend.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/tasks")]
     public class TasksController : ControllerBase
     {
         private readonly TaskContext _taskContext;
@@ -42,5 +42,42 @@ namespace TasknetBackend.Controllers
             }
             return task;
         }
+
+        [HttpPost]
+        public async Task<ActionResult<TaskItem>> CreateTask(TaskItem task)
+        {
+            _taskContext.Tasks.Add(task);
+            await _taskContext.SaveChangesAsync();
+            return CreatedAtAction(nameof(GetTask), new {id = task.Id}, task);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<TaskItem>> PutTask(int id, TaskItem task)
+        {
+            if (id != task.Id)
+            {
+                return BadRequest();
+            }
+
+            _taskContext.Entry(task).State = EntityState.Modified;
+
+            try
+            {
+                await _taskContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if(!TaskExists(id)) {return NotFound();}
+                else {throw;}
+            }
+
+            return NoContent();
+        }
+
+        private bool TaskExists(int id)
+        {
+            return (_taskContext.Tasks?.Any(task => task.Id == id)).GetValueOrDefault();
+        }
+
     }
 }
