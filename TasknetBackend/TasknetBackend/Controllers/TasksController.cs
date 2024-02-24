@@ -79,5 +79,25 @@ namespace TasknetBackend.Controllers
             return (_taskContext.Tasks?.Any(task => task.Id == id)).GetValueOrDefault();
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<TaskItem>> DeleteTask(int id)
+        {
+            if (_taskContext.Tasks == null)
+            {
+                return NotFound();
+            }
+
+            var task = await _taskContext.Tasks.FindAsync(id);
+
+            if (task is null)
+            {
+                return NotFound();
+            }
+
+            _taskContext.Tasks.Remove(task);
+            await _taskContext.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }
