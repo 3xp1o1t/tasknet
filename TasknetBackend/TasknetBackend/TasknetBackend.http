@@ -1,0 +1,6 @@
+@TasknetBackend_HostAddress = http://localhost:5107
+
+GET {{TasknetBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
