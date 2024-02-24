@@ -39,6 +39,24 @@ TODO
 
 ### Guía de EF incluyendo comandos de dotnet
 
+Listar sdks instalados
+
+```bash
+dotnet --list-sdks
+```
+
+Crear proyecto de WebApi con controladores y https por default
+
+```bash
+dotnet new webapi -controllers -f net8.0
+```
+
+Iniciar proyecto con Swagger (usando run, por alguna razón no lo inicia)
+
+```bash
+dotnet watch --project .\TasknetBackend\TasknetBackend.csproj
+```
+
 [Comandos dotnet ef](https://www.learnentityframeworkcore.com/migrations/add-migration)
 
 Cadena de conexión para instancias locales:
