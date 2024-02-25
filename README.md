@@ -7,7 +7,6 @@
   - [About](#about)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
-    - [Installing](#installing)
   - [Usage](#usage)
     - [Guía de EF incluyendo comandos de dotnet](#guía-de-ef-incluyendo-comandos-de-dotnet)
 
@@ -20,14 +19,6 @@ Aplicación sencilla para gestionar tareas creada con ASP.Net 8 (Backend) y Reac
 TODO
 
 ### Prerequisites
-
-TODO
-
-```bash
-TODO
-```
-
-### Installing
 
 TODO
 
